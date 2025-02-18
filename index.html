@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>E-Commerce</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+
+    <!-- font famaly cdn  -->
+    <link href='https://fonts.googleapis.com/css?family=Jost' rel='stylesheet'>
+
+    <!-- bootstrap icon cdn  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Tab Icon Link -->
+    <link rel="icon" href="images/Logo.png">
+
+    <!-- AOS animation Link -->
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Custom CSS for sidebar -->
+    <style>
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100vh;
+            width: 250px;
+            background-color: #343a40;
+            transition: 0.3s;
+            z-index: 1050;
+        }
+
+        #sidebar.active {
+            left: 0;
+        }
+
+        #sidebar .nav-link {
+            color: #fff;
+            padding: 15px;
+        }
+
+        #sidebar .nav-link:hover {
+            background-color: #495057;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+        }
+
+        @media (min-width: 992px) {
+            #sidebar {
+                left: -250px !important;
+            }
+
+            .overlay {
+                display: none !important;
+            }
+        }
+
+        .carousel-item {
+            background-color: black;
+            height: 70vh;
+            width: 100%;
+        }
+
+        .carousel-item img {
+            height: 60vh;
+            width: auto;
+            float: right;
+        }
+
+        .product-slider {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .infinite-scroll {
+            display: flex;
+            animation: scroll 50s linear infinite;
+        }
+
+        .product-slider {
+            overflow: hidden;
+            position: relative;
+            background: #f8f9fa;
+            padding: 20px 0;
+            margin: 0;
+        }
+        
+        .product-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+         /*start marquee*/ 
+
+         .product-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .product-card {
+            min-width: 250px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-details {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .product-details h5 {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .price {
+            color: #007bff;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Pause animation on hover */
+        .marquee-wrapper:hover .marquee {
+            animation-play-state: paused;
+        }
+
+        /* Clone products for seamless loop */
+        .marquee::after {
+            content: "";
+            display: block;
+            width: 100%;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /*Footer Css*/
+
+        .hover-effect:hover {
+            color: #007bff;
+            transform: scale(1.2);
+            transition: all 0.3s ease;
+        }
+
+        .hover-link:hover {
+            color: #007bff !important;
+            padding-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .hover-contact:hover {
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .payment-methods i {
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .payment-methods i:hover {
+            color: #007bff;
+            transform: translateY(-5px);
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="sidebar">
+        <div class="p-3">
+            <h5 class="text-white">Menu</h5>
+            <button type="button" class="btn-close btn-close-white float-end" aria-label="Close"
+                onclick="toggleSidebar()"></button>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html"><i class="bi bi-house-door me-2"></i>Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-shop me-2"></i>Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-cart me-2"></i>Cart</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-person me-2"></i>Account</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-info-circle me-2"></i>About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-telephone me-2"></i>Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler border-0 d-lg-none" type="button" onclick="toggleSidebar()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <img src="images/Logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                E-Commerce
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html"><i class="bi bi-house-door me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-shop me-1"></i>Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-cart me-1"></i>Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-person me-1"></i>Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container-fluid p-0">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg" class="d-block" alt="Product 1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>New Arrivals</h2>
+                        <p>Check out our latest collection of trending products</p>
+                        <a href="#" class="btn btn-primary">Shop Now</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/apple-airpods-pro-3d-model-3d-model-obj-3ds-fbx-c4d-stl-3dm-Photoroom.png" class="d-block" alt="Product 2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Special Offers</h2>
+                        <p>Get up to 50% off on selected items</p>
+                        <a href="#" class="btn btn-primary">View Offers</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/61sU8OqBs4L._SL1500_-Photoroom.png" class="d-block" alt="Product 3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Premium Collection</h2>
+                        <p>Discover our exclusive premium products</p>
+                        <a href="#" class="btn btn-primary">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Product Slider Section -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Featured Products</h2>
+                <div class="product-slider">
+                    <div class="marquee-wrapper">
+                        <div class="marquee">
+                            <!-- Product Items -->
+                            <div class="product-card mx-3">
+                                <img src="images/Laptop.jpg" alt="Product 1" class="img-fluid">
+                                <div class="product-details">
+                                    <h5>Wireless Earbuds</h5>
+                                    <p class="price">$129.99</p>
+                                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-card mx-3">
+                                <img src="images/Smart_Watch.jpg" alt="Product 2" class="img-fluid">
+                                <div class="product-details">
+                                    <h5>Smart Watch</h5>
+                                    <p class="price">$199.99</p>
+                                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-card mx-3">
+                                <img src="images/Headphone.jpg" alt="Product 3" class="img-fluid">
+                                <div class="product-details">
+                                    <h5>Bluetooth Speaker</h5>
+                                    <p class="price">$79.99</p>
+                                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-card mx-3">
+                                <img src="images/Tablet.jpg" alt="Product 4" class="img-fluid">
+                                <div class="product-details">
+                                    <h5>Gaming Headset</h5>
+                                    <p class="price">$149.99</p>
+                                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-card mx-3">
+                                <img src="images/Smart_watch1.jpg" alt="Product 5" class="img-fluid">
+                                <div class="product-details">
+                                    <h5>Wireless Mouse</h5>
+                                    <p class="price">$49.99</p>
+                                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Products Section -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Featured Products</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <!-- Column 1 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/Laptop.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Premium Laptop</h5>
+                        <p class="card-text">High-performance laptop with latest specifications</p>
+                        <p class="price">$999.99</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/Smart_Watch.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Smart Watch Pro</h5>
+                        <p class="card-text">Advanced smartwatch with health tracking</p>
+                        <p class="price">$299.99</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/Headphone.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Wireless Headphones</h5>
+                        <p class="card-text">Premium noise-cancelling headphones</p>
+                        <p class="price">$199.99</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 4 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/Tablet.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Pro Tablet</h5>
+                        <p class="card-text">Versatile tablet for work and entertainment</p>
+                        <p class="price">$499.99</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 5 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/Smart_watch1.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Fitness Tracker</h5>
+                        <p class="card-text">Advanced fitness tracking features</p>
+                        <p class="price">$79.99</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 6 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/Laptop.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Gaming Laptop</h5>
+                        <p class="card-text">High-performance gaming machine</p>
+                        <p class="price">$1499.99</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 7 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/Headphone.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Gaming Headset</h5>
+                        <p class="card-text">Immersive gaming audio experience</p>
+                        <p class="price">$149.99</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 8 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="images/Tablet.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Drawing Tablet</h5>
+                        <p class="card-text">Professional digital art tablet</p>
+                        <p class="price">$399.99</p>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="text-uppercase mb-4 fw-bold">E-Commerce</h5>
+                    <p class="small">
+                        Your one-stop shop for all electronics and gadgets. Quality products at competitive prices. We strive to provide the best customer experience with top-notch service.
+                    </p>
+                    <div class="mt-4">
+                        <a href="#" class="text-white me-3 social-icon"><i class="bi bi-facebook fs-5 hover-effect"></i></a>
+                        <a href="#" class="text-white me-3 social-icon"><i class="bi bi-twitter fs-5 hover-effect"></i></a>
+                        <a href="#" class="text-white me-3 social-icon"><i class="bi bi-instagram fs-5 hover-effect"></i></a>
+                        <a href="#" class="text-white me-3 social-icon"><i class="bi bi-linkedin fs-5 hover-effect"></i></a>
+                        <a href="#" class="text-white social-icon"><i class="bi bi-youtube fs-5 hover-effect"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="text-uppercase mb-4 fw-bold">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="bi bi-chevron-right me-2"></i>Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="bi bi-chevron-right me-2"></i>Products</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="bi bi-chevron-right me-2"></i>About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="bi bi-chevron-right me-2"></i>Contact</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="bi bi-chevron-right me-2"></i>Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="bi bi-chevron-right me-2"></i>Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="bi bi-chevron-right me-2"></i>Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="text-uppercase mb-4 fw-bold">Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex align-items-center hover-contact">
+                            <i class="bi bi-geo-alt-fill me-2 text-primary"></i>
+                            <span>123 Street, City, Country</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center hover-contact">
+                            <i class="bi bi-envelope-fill me-2 text-primary"></i>
+                            <span>info@ecommerce.com</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center hover-contact">
+                            <i class="bi bi-telephone-fill me-2 text-primary"></i>
+                            <span>+1 234 567 8900</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center hover-contact">
+                            <i class="bi bi-clock-fill me-2 text-primary"></i>
+                            <span>Mon - Fri: 9AM - 6PM</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center hover-contact">
+                            <i class="bi bi-whatsapp me-2 text-primary"></i>
+                            <span>WhatsApp Support Available</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter & Payment Methods -->
+                <div class="col-md-3 mb-4">
+                    <h5 class="text-uppercase mb-4 fw-bold">Stay Connected</h5>
+                    <p class="small">Subscribe to receive updates, exclusive deals, and more.</p>
+                    <form class="mt-3">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                            <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
+                        </div>
+                    </form>
+                    
+                    <h6 class="text-uppercase mt-4 mb-3">Payment Methods</h6>
+                    <div class="payment-methods">
+                        <i class="bi bi-credit-card-fill me-3 fs-4"></i>
+                        <i class="bi bi-paypal me-3 fs-4"></i>
+                        <i class="bi bi-wallet-fill me-3 fs-4"></i>
+                        <i class="fab fa-cc-visa me-3 fs-4"></i>
+                        <i class="fab fa-cc-mastercard fs-4"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="row pt-4 mt-4 border-top">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">&copy; 2023 E-Commerce. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white text-decoration-none small me-3 hover-link">Privacy Policy</a>
+                    <a href="#" class="text-white text-decoration-none small me-3 hover-link">Terms & Conditions</a>
+                    <a href="#" class="text-white text-decoration-none small me-3 hover-link">Shipping Info</a>
+                    <a href="#" class="text-white text-decoration-none small hover-link">FAQs</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+            document.querySelector(".overlay").style.display =
+                document.getElementById("sidebar").classList.contains("active") ? "block" : "none";
+        }
+
+        // Clone products for continuous scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const marquee = document.querySelector('.marquee');
+            const products = document.querySelectorAll('.product-card');
+            
+            // Clone and append products
+            products.forEach(product => {
+                const clone = product.cloneNode(true);
+                marquee.appendChild(clone);
+            });
+        });
+    </script>
+</body>
+
+</html>
